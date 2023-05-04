@@ -1,25 +1,27 @@
-import styles from '@src/styles/Home.module.css';
-import { useState } from 'react';
+import styles from "@src/styles/Home.module.css";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [type, setType] = useState([]);
+  const router = useRouter();
   const TYPES = [
     {
-      name: 'Bus',
-      value: 'bus',
+      name: "Bus",
+      value: "bus",
     },
     {
-      name: 'Train',
-      value: 'train',
+      name: "Train",
+      value: "train",
     },
     {
-      name: 'Angkot',
-      value: 'angkot',
+      name: "Angkot",
+      value: "angkot",
     },
     {
-      name: 'Taxi',
-      value: 'taxi',
+      name: "Taxi",
+      value: "taxi",
     },
   ];
 
@@ -54,7 +56,7 @@ export default function Home() {
       {/* Header */}
       <div className={styles.header}>
         <div className={styles.pin}>
-          <img src='/assets/svg/pin.svg' />
+          <img src="/assets/svg/pin.svg" />
         </div>
         <div className={styles.header_c}>
           <p>Current Location</p>
@@ -65,13 +67,13 @@ export default function Home() {
       <div className={styles.search}>
         <input
           className={styles.searchbar}
-          type={'text'}
+          type={"text"}
           value={query}
-          placeholder={'Where do you want to go?'}
+          placeholder={"Where do you want to go?"}
           onChange={(e) => setQuery(e.target.value)}
         />
         <div className={styles.searchbar_button}>
-          <img src={'/assets/svg/search.svg'} />
+          <img src={"/assets/svg/search.svg"} />
         </div>
       </div>
       {/* Type */}
@@ -79,8 +81,9 @@ export default function Home() {
         <div className={styles.type_h}>
           <p>What are you looking for?</p>
           <p
-            style={{ color: '#808080', cursor: 'pointer' }}
-            onClick={() => setType(['bus', 'train', 'angkot', 'taxi'])}>
+            style={{ color: "#808080", cursor: "pointer" }}
+            onClick={() => setType(["bus", "train", "angkot", "taxi"])}
+          >
             Select all
           </p>
         </div>
@@ -88,11 +91,38 @@ export default function Home() {
           {TYPES.map((_, idx) => (
             <div
               key={idx}
-              className={type.includes(_.value) ? styles.type_i_active : styles.type_i}
-              onClick={() => changeType(_.value)}>
+              className={
+                type.includes(_.value) ? styles.type_i_active : styles.type_i
+              }
+              onClick={() => changeType(_.value)}
+            >
               {_.name}
             </div>
           ))}
+        </div>
+      </div>
+      {/* Station */}
+      <div className={styles.station}>
+        <h3>Nearest Station</h3>
+        <div className={styles.station_l}>
+          <div
+            className={styles.station_c}
+            onClick={() => router.push("/route?station=dago")}
+          >
+            <div className={styles.station_c_info}>
+              <img src="/assets/svg/bus.svg" />
+              <div className={styles.station_c_detail}>
+                <div className={styles.station_c_info_detail}>
+                  <div className={styles.station_number}>34</div>
+                  <h4>Terminal Dago</h4>
+                </div>
+                <p>50m ~ 2 min walk</p>
+              </div>
+            </div>
+            <div className={styles.station_c_seat_avail}>
+              Available Seats: 1
+            </div>
+          </div>
         </div>
       </div>
     </div>

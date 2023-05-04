@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Homepage from "@src/pages/Home";
+import Routepage from "@src/pages/Route";
 
-export default function Home() {
+export default function Route() {
   return (
     <>
       <Head>
@@ -11,7 +11,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Homepage />
+      <Routepage />
     </>
   );
 }

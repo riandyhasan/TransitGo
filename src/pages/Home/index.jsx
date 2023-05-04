@@ -128,7 +128,7 @@ export default function Home() {
                     <div className={styles.station_number}>34</div>
                     <h4>Terminal Dago</h4>
                   </div>
-                  <p>50m ~ 2 min walk</p>
+                  <p>1.5 km ~ 22 min walk</p>
                 </div>
               </div>
               <div
